@@ -38,7 +38,28 @@ var sum = function(array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
+
 var arraySum = function(array) {
+  var copy = array.slice();
+
+  if (copy.length === 0) {
+    return 0;
+  }
+
+  if (copy.length === 1 && typeof copy[0] === 'number') {
+    return copy[0];
+  }
+
+  var flattenedCopy = copy.flat();
+  var reducedFlattenedCopy = flattenedCopy.reduce(function(acc, cur) {
+    return acc + cur;
+  });
+
+  if (typeof reducedFlattenedCopy === 'number') {
+    return reducedFlattenedCopy;
+  }
+
+  return arraySum(flattenedCopy);
 };
 
 // 4. Check if a number is even.
