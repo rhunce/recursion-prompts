@@ -63,7 +63,19 @@ var arraySum = function(array) {
 };
 
 // 4. Check if a number is even.
+
 var isEven = function(n) {
+  var absoluteValueN = Math.abs(n);
+
+  if (absoluteValueN === 0) {
+    return true;
+  }
+
+  if (absoluteValueN === 1) {
+    return false;
+  }
+
+  return isEven(absoluteValueN - 2);
 };
 
 // 5. Sum all integers below a given integer.
