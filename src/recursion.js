@@ -180,6 +180,14 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  var newStr = string.toLowerCase();
+  if (newStr.length === 1 || (newStr.length === 2 && newStr[0] === newStr[1])) {
+    return true;
+  }
+  if (newStr[0] !== newStr[newStr.length - 1]) {
+    return false;
+  }
+  return palindrome(newStr.substring(1, newStr.length - 1));
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
