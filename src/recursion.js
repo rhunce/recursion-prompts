@@ -230,7 +230,40 @@ var palindrome = function(string) {
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
+
+// Input:
+  // x - number - pos or neg integer
+  // y - number - pos or neg integer
+// Output: result - number - equal to result of multplying x and y
+// Constraints: Don't use * or any Math methods
+// Edge Cases: if any input is zero, result is zero
+// HLA:
+  // We will take x and add it to itself y times. We'll also track the signs to make sure we return result with correct sign to it.
 var multiply = function(x, y) {
+  if (x === 0 || y === 0) {
+    return 0;
+  }
+
+  var sameSign = true;
+  if ((x < 0 && y > 0) || (x > 0 && y < 0)) {
+    sameSign = false;
+  }
+
+  var absValX = x;
+  if (x < 0) {
+    absValX = x - x - x;
+  }
+
+  var absValY = y;
+  if (y < 0) {
+    absValY = y - y - y;
+  }
+
+  if (sameSign) {
+    return absValX + multiply(absValX, absValY - 1);
+  }
+
+  return -(absValX + multiply(absValX, absValY - 1));
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
