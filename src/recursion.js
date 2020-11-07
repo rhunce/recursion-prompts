@@ -231,14 +231,6 @@ var palindrome = function(string) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 
-// Input:
-  // x - number - pos or neg integer
-  // y - number - pos or neg integer
-// Output: result - number - equal to result of multplying x and y
-// Constraints: Don't use * or any Math methods
-// Edge Cases: if any input is zero, result is zero
-// HLA:
-  // We will take x and add it to itself y times. We'll also track the signs to make sure we return result with correct sign to it.
 var multiply = function(x, y) {
   if (x === 0 || y === 0) {
     return 0;
@@ -268,7 +260,41 @@ var multiply = function(x, y) {
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
+
 var divide = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+
+  var xIsNegative = false;
+  if (x < 0) {
+    xIsNegative = true;
+  }
+
+  var absValX = x;
+  var absValY = y;
+
+  if (x < 0) {
+    absValX = x - x - x;
+  }
+
+  if (y < 0) {
+    absValY = y - y - y;
+  }
+
+  if (absValX < absValY && xIsNegative) {
+    return -0;
+  }
+
+  if (absValX < absValY && !xIsNegative) {
+    return 0;
+  }
+
+  if (xIsNegative) {
+    return -1 - divide(absValX - abdValY, absValY);
+  }
+
+  return 1 + divide(absValX - absValY, absValY);
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
