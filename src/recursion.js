@@ -333,7 +333,19 @@ var createArray = function(str) {
 };
 
 // 17. Reverse the order of an array
+
+// Input: array - array
+// Output: result - array - input array with elements in reverse order
+// Constraints:
+// Edge Cases: if array empty, return empty array
+// HLA:
+  // Apply edge case. create new array and concat it with last element and function applied to second to last element
 var reverseArr = function(array) {
+  if (array.length === 0) {
+    return [];
+  }
+
+  return [].concat(array[array.length - 1], reverseArr(array.slice(0, array.length - 1)));
 };
 
 // 18. Create a new array with a given value and length.
