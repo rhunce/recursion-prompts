@@ -334,12 +334,6 @@ var createArray = function(str) {
 
 // 17. Reverse the order of an array
 
-// Input: array - array
-// Output: result - array - input array with elements in reverse order
-// Constraints:
-// Edge Cases: if array empty, return empty array
-// HLA:
-  // Apply edge case. create new array and concat it with last element and function applied to second to last element
 var reverseArr = function(array) {
   if (array.length === 0) {
     return [];
@@ -351,7 +345,18 @@ var reverseArr = function(array) {
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
+
 var buildList = function(value, length) {
+  if (length === 0) {
+    return [];
+  }
+
+  var newValue = value;
+  if (Array.isArray(value) && value.length === 0) {
+    newValue = [[]];
+  }
+
+  return [].concat(newValue, buildList(newValue, length - 1));
 };
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
