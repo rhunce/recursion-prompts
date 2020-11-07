@@ -2,8 +2,7 @@
 
 // Solve the following prompts using recursion.
 
-// 1. Calculate the factorial of a number. The factorial of a non-negative integer n,
-// denoted by n!, is the product of all positive integers less than or equal to n.
+// 1. Calculate the factorial of a number. The factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 
@@ -125,19 +124,10 @@ var range = function(x, y) {
 
 };
 
-// 7. Compute the exponent of a number.
-// The exponent of a number says how many times the base number is used as a factor.
+// 7. Compute the exponent of a number. The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
-
-// Input: base - number; exp - pos or neg integer
-// Output: result - number, equal to result of raising base to exp
-// Constraints: use recursion
-// Edge Cases: When exp = 0, return 1
-// HLA:
-
-// x^a * x^b = x^(a+b)
 
 var exponent = function(base, exp) {
   if (exp === 0) {
@@ -190,8 +180,7 @@ var palindrome = function(string) {
   return palindrome(newStr.substring(1, newStr.length - 1));
 };
 
-// 11. Write a function that returns the remainder of x divided by y without using the
-// modulo (%) operator.
+// 11. Write a function that returns the remainder of x divided by y without using the modulo (%) operator.
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
@@ -228,8 +217,7 @@ var palindrome = function(string) {
     return modulo(absValX-absValY, absValY);
   };
 
-// 12. Write a function that multiplies two numbers without using the * operator or
-// Math methods.
+// 12. Write a function that multiplies two numbers without using the * operator or Math methods.
 
 var multiply = function(x, y) {
   if (x === 0 || y === 0) {
@@ -258,8 +246,7 @@ var multiply = function(x, y) {
   return -(absValX + multiply(absValX, absValY - 1));
 };
 
-// 13. Write a function that divides two numbers without using the / operator or
-// Math methods to arrive at an approximate quotient (ignore decimal endings).
+// 13. Write a function that divides two numbers without using the / operator or Math methods to arrive at an approximate quotient (ignore decimal endings).
 
 var divide = function(x, y) {
   if (y === 0) {
@@ -297,24 +284,52 @@ var divide = function(x, y) {
   return 1 + divide(absValX - absValY, absValY);
 };
 
-// 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
-// integers is the greatest integer that divides both x and y with no remainder.
+// 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two integers is the greatest integer that divides both x and y with no remainder.
 // gcd(4,36); // 4
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
+
 var gcd = function(x, y) {
+  if (x < 0 || y < 0) {
+    return null;
+  }
+
+  if (x === 0) {
+    return y;
+  }
+
+  if (y === 0) {
+    return x;
+  }
+
+  return gcd(y, x % y);
+
 };
 
-// 15. Write a function that compares each character of two strings and returns true if
-// both are identical.
+// 15. Write a function that compares each character of two strings and returns true if both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
-};
 
-// 16. Write a function that accepts a string and creates an array where each letter
-// occupies an index of the array.
+  var compareStr = function(str1, str2) {
+    if (str1[0] !== str2[0]) {
+      return false;
+    }
+
+    if (str1 === '' && str2 === '') {
+      return true;
+    }
+
+    return compareStr(str1.substring(1), str2.substring(1));
+  };
+
+// 16. Write a function that accepts a string and creates an array where each letter occupies an index of the array.
+
 var createArray = function(str) {
+  if (str === '') {
+    return [];
+  }
+
+  return [].concat(str[0], createArray(str.substring(1)));
 };
 
 // 17. Reverse the order of an array
