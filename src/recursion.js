@@ -492,10 +492,8 @@ var fibonacci = function(n) {
     return null;
   }
 
-  var fibSequence = [0, 1]
-
   if (n === 1) {
-    return fibSequence;
+    return [0, 1];
   }
 
   var updatedSequence = fibonacci(n-1);
@@ -510,7 +508,17 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
+
 var nthFibo = function(n) {
+  if (n < 0) {
+    return null;
+  }
+
+  if (n === 0 || n === 1) {
+    return n;
+  }
+
+  return nthFibo(n-1) + nthFibo(n-2);
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
