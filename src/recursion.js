@@ -535,8 +535,30 @@ var capitalizeWords = function(array) {
 
 // 28. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car','poop','banana']); // ['Car','Poop','Banana']
+
 var capitalizeFirst = function(array) {
+
+  if (array.length === 0) {
+    return [];
+  }
+
+  var lastWord = array[array.length - 1];
+  var uppercasedLastWord = capitalizeFirstLetter(lastWord);
+
+  return [].concat(capitalizeFirst(array.slice(0, array.length - 1)), uppercasedLastWord);
 };
+
+var capitalizeFirstLetter = function(word) {
+  var uppercasedWord = '';
+  for (var i = 0; i < word.length; i++) {
+    if (i === 0) {
+      uppercasedWord += word[i].toUpperCase();
+    } else {
+      uppercasedWord += word[i];
+    }
+  }
+  return uppercasedWord;
+}
 
 // 29. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
