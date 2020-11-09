@@ -482,12 +482,27 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
   return obj;
 };
 
-// 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
-// number is the sum of the previous two.
+// 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent number is the sum of the previous two.
 // Example: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
+
 var fibonacci = function(n) {
+  if (n <= 0) {
+    return null;
+  }
+
+  var fibSequence = [0, 1]
+
+  if (n === 1) {
+    return fibSequence;
+  }
+
+  var updatedSequence = fibonacci(n-1);
+  var lastIndex = updatedSequence.length - 1;
+  var lastFibNum = updatedSequence[lastIndex] + updatedSequence[lastIndex - 1];
+  updatedSequence.push(lastFibNum);
+  return updatedSequence;
 };
 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.
